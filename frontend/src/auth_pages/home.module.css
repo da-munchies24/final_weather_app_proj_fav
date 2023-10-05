@@ -11,7 +11,11 @@ body {
 
 h1 {
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+h2{
+    margin: 20px 0;
 }
 
 .home_body label {
@@ -27,6 +31,7 @@ h1 {
     color: #fff;
     border: none;
     border-radius: 5px;
+    margin-top: 20px;
 }
 
 .home_body button {
@@ -105,4 +110,8 @@ h1 {
 
 .hourlyTemp img {
     margin-right: 10px;
+}
+
+p {
+    margin: 15px 0;
 }
