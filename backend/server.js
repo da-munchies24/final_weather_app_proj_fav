@@ -1,10 +1,21 @@
 const express = require('express');
 const cors = require('cors');
 const PORT = 8080;
+const { MongoClient, ObjectId } = require('mongodb');
+
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+process.env.USER
+process.env.PASS
+process.env.HOST
+
+const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@${process.env.HOST}`
+const client = new MongoClient( uri )
+
+let collection = null
+
 
 // TODO
 // Setup MongoDB client 
