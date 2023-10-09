@@ -11,7 +11,7 @@ process.env.USER
 process.env.PASS
 process.env.HOST
 
-const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@${process.env.HOST}`
+const uri = `mongodb+srv://bruhmoment:bruhpassword@cluster0.j0vtett.mongodb.net `
 const client = new MongoClient( uri )
 
 let collection = null
