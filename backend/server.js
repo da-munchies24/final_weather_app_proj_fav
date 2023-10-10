@@ -21,30 +21,48 @@ let collection = null
 // Setup MongoDB client 
 // Use PROCESS.ENV variables
 
-app.post('/register', (req, res) => {
-    // TODO 
-    // Check if user exists on DB
-    // Add user to mongoDB if user doesn't already exist
-    // Otherwise return an error
+app.post('/register', async (req, res) => {
 
     const dataAsJson = {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
+        favorites: ""
     }
+    
+
+    
+    
+    let users = await client.db("UserInfo").collection("Users")
+    const result = await users.findOne({'email': req.body.email})
+    if(result != null){
+      const result = await collection.insertOne(dataAsJson)
+    }
+    else{
+      res.sendStatus(100)
+    }
+    
     console.log(dataAsJson);
     res.sendStatus(200);
 });
 
-app.post('/login', (req, res) => {
-    // TODO
-    // Check if user password matches password on db
+app.post('/login', async (req, res) => {
+  
 
     const dataAsJson = {
         email: req.body.email,
         password: req.body.password,
     }
 
+    let users = await client.db("UserInfo").collection("Users")
+    const result = await users.findOne(dataAsJson)
+    if(result != null){
+     res.sendStatus(200);
+    }
+    else{
+      res.sendStatus(100)
+    }
+    
     console.log(dataAsJson);
     res.sendStatus(200);
 })
