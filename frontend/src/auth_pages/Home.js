@@ -15,6 +15,33 @@ function Home() {
         const formattedHour = hour % 12 || 12;
         return `${formattedHour} ${amPm}`;
     };
+   
+    const getFavoriteData= async (user, name) => {
+        //need a way to know which user is login right now and pass it to the function
+        let json={
+            email: user,
+            username: name,
+        }
+        let option={
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json;charset=utf-8'},
+            body: JSON.stringify(json) 
+        }
+       
+        const response = await fetch('/favoriteData',option);
+        const data = await response.json();
+       
+        if(data == ''){
+            alter ('No favorites found. Please try again.')
+        }
+        else{
+            setFavorite(data)
+        }
+        //need some way to change the location we want to find to favorite
+        //and pass it to get WeatherData
+    }
+    
+    
 
     const getWeatherData = async () => {
         try {

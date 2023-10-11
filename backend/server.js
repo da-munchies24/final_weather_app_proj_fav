@@ -91,6 +91,19 @@ app.post('/favorite', async (req, res)=>{
 
 })
 
+app.get('/favoriteData', async (req,res)=>{
+  const dataAsJson = {
+     email: req.body.email,
+     username: req.body.username,
+}
+
+  let users= await client.db("UserInfo").collection("Users")
+  const result= await users.find({dataAsJson},{_id:0, username:0, email:0, password:0, favorite:1})
+   
+   console.log(result);
+   res.json(result)
+})
+
 
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT} port`);
