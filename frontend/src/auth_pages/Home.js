@@ -7,6 +7,7 @@ function Home() {
     const [weatherInfo, setWeatherInfo] = useState(null);
     const [showLocationAlert, setShowLocationAlert] = useState(false);
     const [selectedDay, setSelectedDay] = useState(null);
+    const [favorite, setFavorite]= useState('');
 
     const formatTime = (time) => {
         const hour = parseInt(time.split(' ')[1].split(':')[0]);
@@ -38,6 +39,7 @@ function Home() {
             console.error('Error fetching weather data:', error);
         }
     };
+    
 
     useEffect(() => {
     }, [location]);

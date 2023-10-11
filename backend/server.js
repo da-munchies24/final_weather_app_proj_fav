@@ -67,6 +67,30 @@ app.post('/login', async (req, res) => {
     res.sendStatus(200);
 })
 
+app.post('/favorite', async (req, res)=>{
+  
+  const dataAsJson = {
+     email: req.body.email,
+     password: req.body.favorite,
+  }
+  //req.body.email 
+  let users= await client.db("UserInfo").collection("Users")
+  const result = await users.updateOne(
+  {'email': req.body.email},
+  {$set:{favorite: req.body.favorite}})
+  
+  if(result != null){
+    res.sendStatus(200);
+   }
+   else{
+     res.sendStatus(100)
+   }
+  
+  console.log(dataAsJson)
+  res.sendStatus(200)
+
+})
+
 
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT} port`);
